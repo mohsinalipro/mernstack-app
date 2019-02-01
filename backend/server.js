@@ -1,12 +1,22 @@
 const express = require("express");
 const app = express();
-const router = require("./router");
+const logger = require("morgan");
+const bodyParser = require("body-parser");
 
-const { PORT } = require("./config");
-app.set("port", PORT);
+const mongoose = require("./config/database");
 
-app.use(router);
+mongoose.connection.on(
+  "error",
+  console.error.bind(console, "MongoDB connection error:")
+);
 
-app.listen(app.get("port"), "localhost", () => {
-  console.log(`Server is running on port ${PORT}`);
+app.use(logger("dev"));
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.get("/", function(req, res) {
+  res.json({ tutorial: "Build REST API with node.js" });
+});
+
+app.listen(3000, function() {
+  console.log("Node server listening on port 3000");
 });
