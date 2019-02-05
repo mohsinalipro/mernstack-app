@@ -3,12 +3,17 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Container from "./Container";
 
-const Navigation = styled.div`
-  background: red;
+const HeaderStyled = styled.div`
+  margin-bottom: 20px;
+`;
+const Nav = styled.nav`
+  background: #fafbfc;
+  border-bottom: 1px solid #e1e4e8;
 `;
 
 const Ul = styled.ul`
   list-style: none;
+  padding-top: 8px;
 `;
 
 const Li = styled.li`
@@ -20,21 +25,48 @@ const Li = styled.li`
 const NavLinkStyled = styled(NavLink)`
   display: block;
   text-decoration: none;
+  color: #777;
+  padding: 10px;
+  text-transform: uppercase;
+  margin-right: 16px;
+  position: relative;
+  border-bottom: 2px solid transparent;
+  &:hover {
+    color: #24292e;
+    border-bottom-color: #e1e4e8;
+  }
+  &.active {
+    color: #24292e;
+    border-bottom-color: #24292e;
+  }
 `;
 
-const LogoTitle = styled.span``;
+const LogoWapper = styled.div`
+  background: #24292e;
+  padding: 24px 0 24px;
+`;
+const NavLinkLogo = styled(NavLink)`
+  display: block;
+  text-decoration: none;
+  font-size: 24px;
+  color: #fff !important;
+`;
 
 export default function Header() {
   return (
-    <div>
-      <Container>
-        <LogoTitle>MERN Stack App</LogoTitle>
-      </Container>
-      <Navigation>
+    <HeaderStyled>
+      <LogoWapper>
+        <Container>
+          <NavLinkLogo to="/">MERN Stack App</NavLinkLogo>
+        </Container>
+      </LogoWapper>
+      <Nav>
         <Container>
           <Ul>
             <Li>
-              <NavLinkStyled to="/">Home</NavLinkStyled>
+              <NavLinkStyled exact to="/">
+                Home
+              </NavLinkStyled>
             </Li>
             <Li>
               <NavLinkStyled to="/login">Login</NavLinkStyled>
@@ -44,7 +76,7 @@ export default function Header() {
             </Li>
           </Ul>
         </Container>
-      </Navigation>
-    </div>
+      </Nav>
+    </HeaderStyled>
   );
 }
