@@ -3,6 +3,8 @@ import Header from "../common/Header";
 import PageConainer from "../common/PageConainer";
 import Container from "../common/Container";
 
+import requireAuth from '../common/requireAuth'
+
 function HomePage() {
   return (
     <div>
@@ -14,4 +16,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default requireAuth(HomePage);
