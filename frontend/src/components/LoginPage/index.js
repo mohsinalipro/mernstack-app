@@ -10,7 +10,6 @@ function LoginPage() {
       <Header />
       <PageConainer>
         <Container>
-          <div>Login Page</div>
           <LoginForm />
         </Container>
       </PageConainer>

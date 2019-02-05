@@ -2,8 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Container from "./Container";
-
-const HeaderStyled = styled.div`
+import config from "../../config";
+const HeaderStyled = styled.header`
   margin-bottom: 20px;
 `;
 const Nav = styled.nav`
@@ -26,7 +26,7 @@ const NavLinkStyled = styled(NavLink)`
   display: block;
   text-decoration: none;
   color: #777;
-  padding: 10px;
+  padding: 8px;
   text-transform: uppercase;
   margin-right: 16px;
   position: relative;
@@ -43,13 +43,14 @@ const NavLinkStyled = styled(NavLink)`
 
 const LogoWapper = styled.div`
   background: #24292e;
-  padding: 24px 0 24px;
+  padding: 12px 0 12px;
 `;
-const NavLinkLogo = styled(NavLink)`
-  display: block;
-  text-decoration: none;
-  font-size: 24px;
-  color: #fff !important;
+const Logo = styled.h1`
+  & a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 400;
+  }
 `;
 
 export default function Header() {
@@ -57,7 +58,9 @@ export default function Header() {
     <HeaderStyled>
       <LogoWapper>
         <Container>
-          <NavLinkLogo to="/">MERN Stack App</NavLinkLogo>
+          <Logo>
+            <NavLink to="/">{config.appName}</NavLink>
+          </Logo>
         </Container>
       </LogoWapper>
       <Nav>

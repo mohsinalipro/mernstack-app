@@ -10,7 +10,6 @@ function SignupPage() {
       <Header />
       <PageConainer>
         <Container>
-          <div>Signup Page</div>
           <SignupForm />
         </Container>
       </PageConainer>

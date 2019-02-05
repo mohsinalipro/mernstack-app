@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import styled from "styled-components";
+
 import HomePage from "./components/HomePage";
 import LoginPage from "./components/LoginPage";
 import SignupPage from "./components/SignupPage";
 
+const AppStyled = styled.div`
+  height: 100vh;
+`;
+
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <AppStyled>
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={HomePage} />
@@ -15,7 +21,7 @@ class App extends Component {
             <Route path="/signup" component={SignupPage} />
           </Switch>
         </BrowserRouter>
-      </div>
+      </AppStyled>
     );
   }
 }
