@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import Shake from "react-reveal/Shake";
+import isEmail from "validator/lib/isEmail";
 
 import { connect } from "react-redux";
 import signupAction from "../../redux/actions/user/signup";
@@ -39,7 +40,7 @@ class SignupForm extends Component {
 
   validateEmail = () => {
     const { email } = this.state;
-    this.setState({ validEmail: email.length >= 3 }, this.validateForm);
+    this.setState({ validEmail: isEmail(email) }, this.validateForm);
   };
 
   validateUsername = () => {
