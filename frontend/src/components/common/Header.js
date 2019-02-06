@@ -54,14 +54,29 @@ const Logo = styled.h1`
   }
 `;
 
+const Author = styled.div`
+  color: #999;
+  font-size: 12px;
+  text-align: right;
+  & a {
+    color: inherit;
+  }
+`;
+
 function Header(props) {
   return (
     <HeaderStyled>
       <LogoWapper>
         <Container>
-          <Logo>
-            <NavLink to="/">{config.appName}</NavLink>
-          </Logo>
+          <React.Fragment>
+            <Logo>
+              <NavLink to="/">{config.appName}</NavLink>
+            </Logo>
+            <Author>
+              developed by: {""}
+              <a href={config.authorUrl}>{config.author}</a>
+            </Author>
+          </React.Fragment>
         </Container>
       </LogoWapper>
       <Nav>
