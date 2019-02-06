@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { connect } from "react-redux";
 import Container from "./Container";
 import config from "../../config";
 const HeaderStyled = styled.header`
@@ -53,7 +54,7 @@ const Logo = styled.h1`
   }
 `;
 
-export default function Header() {
+function Header(props) {
   return (
     <HeaderStyled>
       <LogoWapper>
@@ -71,15 +72,29 @@ export default function Header() {
                 Home
               </NavLinkStyled>
             </Li>
-            <Li>
-              <NavLinkStyled to="/login">Login</NavLinkStyled>
-            </Li>
-            <Li>
-              <NavLinkStyled to="/signup">Signup</NavLinkStyled>
-            </Li>
+            {props.user.token ? (
+              <Li>
+                <NavLinkStyled to="/logout">Logout</NavLinkStyled>
+              </Li>
+            ) : (
+              <React.Fragment>
+                <Li>
+                  <NavLinkStyled to="/login">Login</NavLinkStyled>
+                </Li>
+                <Li>
+                  <NavLinkStyled to="/signup">Signup</NavLinkStyled>
+                </Li>
+              </React.Fragment>
+            )}
           </Ul>
         </Container>
       </Nav>
     </HeaderStyled>
   );
 }
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}
+export default connect(mapStateToProps)(Header);
