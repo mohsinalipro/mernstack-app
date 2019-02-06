@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import Shake from "react-reveal/Shake";
 
+import { connect } from "react-redux";
+import loginAction from "../../redux/actions/user/login";
+
 import Form, {
   FormRow,
   Label,
@@ -53,6 +56,9 @@ class LoginForm extends Component {
     this.setState({ formSubmitted: false }, () =>
       this.setState({ formSubmitted: true })
     );
+    if (this.state.valid) {
+      this.props.loginAction(this.state.username, this.state.password);
+    }
   };
 
   render() {
@@ -131,5 +137,13 @@ class LoginForm extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}
 
-export default LoginForm;
+export default connect(
+  mapStateToProps,
+  { loginAction }
+)(LoginForm);

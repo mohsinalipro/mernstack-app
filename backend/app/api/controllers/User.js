@@ -23,6 +23,7 @@ module.exports = {
   },
 
   login: (req, res, next) => {
+    console.log(req.body);
     userModel
       .findOne({ username: req.body.username })
       .then(modelResult => {
@@ -41,6 +42,7 @@ module.exports = {
           next();
         } else {
           forbiddenResponse(res, "Invalid username or password.");
+          next();
         }
       })
       .catch(err => {
@@ -66,11 +68,15 @@ module.exports = {
             next();
           })
           .catch(err => {
-            forbiddenResponse(res, "Unable to retrive user info.", err);
+            exceptionResponse(
+              res,
+              "Something went wrong, please try again.",
+              err
+            );
             next();
           });
       } else {
-        forbiddenResponse(res, "Something went wrong, please try again.", err);
+        forbiddenResponse(res, "Unable to retrive user info.", err);
         next();
       }
     });

@@ -3,6 +3,7 @@ import SignupForm from "./SignupForm";
 import Header from "../common/Header";
 import PageConainer from "../common/PageConainer";
 import Container from "../common/Container";
+import requireAuth from "../common/requireAuth";
 
 function SignupPage() {
   return (
@@ -17,4 +18,4 @@ function SignupPage() {
   );
 }
 
-export default SignupPage;
+export default requireAuth(SignupPage, true);
