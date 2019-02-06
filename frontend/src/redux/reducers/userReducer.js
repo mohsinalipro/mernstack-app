@@ -12,6 +12,7 @@ import {
 
 const initialState = {
   token: retriveToken(),
+  id: "",
   name: "",
   email: "",
   username: ""
@@ -25,7 +26,6 @@ export default (state = initialState, action) => {
       return { ...state, token: action.payload };
 
     case USER_SIGNUP:
-      console.log(action);
       saveToken(action.payload); // localStorage
       return { ...state, token: action.payload };
 
@@ -34,7 +34,8 @@ export default (state = initialState, action) => {
       return { ...state, token: null };
 
     case USER_RETRIVE_INFO:
-      return state;
+      const { _id: id, name, email, username } = action.payload;
+      return { ...state, id, name, email, username };
 
     default:
       return state;

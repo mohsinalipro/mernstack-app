@@ -18,7 +18,7 @@ module.exports = {
         modelRes["token"] = token;
 
         modelRes.password = undefined; // hide password
-        successResponse(res, "You have successfully signed up.", {token});
+        successResponse(res, "You have successfully signed up.", { token });
         next();
       })
       .catch(err => {
@@ -55,7 +55,7 @@ module.exports = {
       });
   },
 
-  getInfo: (req, res, next) => {
+  retriveInfo: (req, res, next) => {
     const { token } = req.body;
     jwt.verify(token, req.app.get("secretKey"), (err, decoded) => {
       if (!err) {

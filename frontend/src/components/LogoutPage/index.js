@@ -11,7 +11,6 @@ class LogoutPage extends Component {
     this.props.logoutAction();
   }
   componentDidUpdate() {
-    console.log("LOGOUT UPDATED");
   }
   render() {
     return (
