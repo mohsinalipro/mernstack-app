@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 import Shake from "react-reveal/Shake";
 
+import { connect } from "react-redux";
+import signupAction from "../../redux/actions/user/signup";
+
 import Form, {
   FormRow,
   Label,
@@ -70,14 +73,6 @@ class SignupForm extends Component {
         this.state.validPassword &&
         this.state.confirmPassword
     });
-    console.log({
-      "Valid confirmPassword: ":
-        +this.state.validConfirmPassword +
-        " : " +
-        this.state.confirmPassword +
-        " === " +
-        this.state.password
-    });
   };
 
   handleNameChange = e => {
@@ -106,12 +101,20 @@ class SignupForm extends Component {
     this.setState({ formSubmitted: false }, () =>
       this.setState({ formSubmitted: true })
     );
+    if (this.state.valid) {
+      this.props.signupAction(
+        this.state.name,
+        this.state.email,
+        this.state.username,
+        this.state.password
+      );
+    }
   };
 
   render() {
     return (
       <div>
-        <Fade>
+        <Fade onSubmit={this.handleFormSubmit}>
           <Form onSubmit={this.handleFormSubmit}>
             <FormTitle>Signup in to {config.appName}</FormTitle>
 
@@ -263,4 +266,7 @@ class SignupForm extends Component {
   }
 }
 
-export default SignupForm;
+export default connect(
+  null,
+  { signupAction }
+)(SignupForm);

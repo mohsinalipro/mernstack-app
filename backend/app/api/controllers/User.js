@@ -12,8 +12,13 @@ module.exports = {
         password
       })
       .then(modelRes => {
+        const token = jwt.sign({ id: modelRes._id }, req.app.get("secretKey"), {
+          expiresIn: "1h"
+        });
+        modelRes["token"] = token;
+
         modelRes.password = undefined; // hide password
-        successResponse(res, "You have successfully signed up.", modelRes);
+        successResponse(res, "You have successfully signed up.", {token});
         next();
       })
       .catch(err => {
@@ -23,7 +28,6 @@ module.exports = {
   },
 
   login: (req, res, next) => {
-    console.log(req.body);
     userModel
       .findOne({ username: req.body.username })
       .then(modelResult => {
