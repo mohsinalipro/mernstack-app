@@ -4,7 +4,6 @@ import { USER_RETRIVE_INFO } from "./types";
 import apiRoutes from "../../../api/routes";
 
 export function shouldUserRetriveInfo(info) {
-  (info);
   return {
     type: USER_RETRIVE_INFO,
     payload: info
