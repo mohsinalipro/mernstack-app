@@ -22,6 +22,7 @@ export default (state = initialState, action) => {
   switch (type) {
     case USER_LOGIN:
       saveToken(action.payload); // localStorage
+      console.log(action);
       return { ...state, token: action.payload };
 
     case USER_SIGNUP:

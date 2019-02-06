@@ -3,11 +3,13 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import styled from "styled-components";
 import ReduxToastr from "react-redux-toastr";
+
 import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
 
 import HomePage from "./components/HomePage";
 import LoginPage from "./components/LoginPage";
 import SignupPage from "./components/SignupPage";
+import LogoutPage from "./components/LogoutPage";
 
 import store from "./redux";
 
@@ -25,6 +27,7 @@ class App extends Component {
               <Route exact path="/" component={HomePage} />
               <Route path="/login" component={LoginPage} />
               <Route path="/signup" component={SignupPage} />
+              <Route path="/logout" component={LogoutPage} />
             </Switch>
           </BrowserRouter>
           <ReduxToastr

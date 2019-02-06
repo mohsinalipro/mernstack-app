@@ -137,13 +137,8 @@ class LoginForm extends Component {
     );
   }
 }
-function mapStateToProps(state) {
-  return {
-    user: state.user
-  };
-}
 
 export default connect(
-  mapStateToProps,
+  null,
   { loginAction }
 )(LoginForm);

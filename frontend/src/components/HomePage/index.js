@@ -1,9 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
 import Header from "../common/Header";
 import PageContainer from "../common/PageConainer";
 import Container from "../common/Container";
 
-import requireAuth from '../common/requireAuth'
+import requireAuth from "../common/requireAuth";
 
 function HomePage() {
   return (
@@ -15,5 +16,9 @@ function HomePage() {
     </div>
   );
 }
-
-export default requireAuth(HomePage);
+function mapStateToProps(state) {
+  return {
+    user: state.user
+  };
+}
+export default connect(mapStateToProps)(requireAuth(HomePage));

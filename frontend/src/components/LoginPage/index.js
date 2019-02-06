@@ -3,7 +3,7 @@ import LoginForm from "./LoginForm";
 import Header from "../common/Header";
 import PageConainer from "../common/PageConainer";
 import Container from "../common/Container";
-import requireAuth from "../common/requireAuth";
+import guestOnly from "../common/guestOnly";
 
 function LoginPage() {
   return (
@@ -18,4 +18,4 @@ function LoginPage() {
   );
 }
 
-export default requireAuth(LoginPage, true);
+export default guestOnly(LoginPage);
