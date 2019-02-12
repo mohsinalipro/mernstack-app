@@ -34,7 +34,7 @@ frontend/config/index.js
 Install the dependencies and start the server.
 
 ```sh
-$ cd mernstack-app/frontend
+$ cd mernstack-app/backend
 $ npm i
 $ npm start
 ```
@@ -46,7 +46,7 @@ $ npm run dev
 ```
 
 Configuration file:
-backend/config/config.js
+mernstack-app/backend/config/config.js
 
 ## License
 
